@@ -9,7 +9,9 @@ class File:
         self.file_path = file_path
 
     def read_file(self: File) -> list[str]:
-        if not self.file_path.casefold().endswith((
+        normalized_file_path = self.file_path.casefold()
+
+        if not normalized_file_path.endswith((
                 TEXT_FILE_EXTENSION.value.casefold(),
                 PORTABLE_DOCUMENT_FORMAT_FILE_EXTENSION.value.casefold(),
                 DOCX_FILE_EXTENSION.value.casefold())):
@@ -18,4 +20,4 @@ class File:
         if not os.path.isfile(self.file_path):
             raise FileNotFoundError("File Not Found: '{}'.".format(self.file_path))
 
-        return FileExtensions.handle_file(self.file_path.casefold())
+        return FileExtensions.handle_file(normalized_file_path)
