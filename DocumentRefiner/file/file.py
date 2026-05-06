@@ -1,6 +1,6 @@
 import os
+from DocumentRefiner.file.model.extension import TEXT as TEXT_FILE_EXTENSION
 
-text_file_extension = ".TXT"
 read_mode = "r"
 
 class File:
@@ -8,7 +8,7 @@ class File:
         self.file_path = file_path
 
     def read_file(self: File) -> list[str]:
-        if not self.file_path.casefold().endswith(text_file_extension.casefold()):
+        if not self.file_path.casefold().endswith(TEXT_FILE_EXTENSION.value.casefold()):
             raise ValueError("Invalid File: '{}'. Required Text file.".format(self.file_path))
 
         if not os.path.isfile(self.file_path):
