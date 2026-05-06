@@ -1,6 +1,8 @@
 import pypdf
+from docx import Document
 from DocumentRefiner.file.model.extension import TEXT as TEXT_FILE_EXTENSION
 from DocumentRefiner.file.model.extension import PORTABLE_DOCUMENT_FORMAT as PORTABLE_DOCUMENT_FORMAT_FILE_EXTENSION
+from DocumentRefiner.file.model.extension import DOCX as DOCX_FILE_EXTENSION
 
 read_mode = "r"
 
@@ -12,6 +14,9 @@ class FileExtensions:
 
         if file_path.casefold().endswith(PORTABLE_DOCUMENT_FORMAT_FILE_EXTENSION.value.casefold()):
             return FileExtensions.__handle_portable_document_format_file__(file_path)
+
+        if file_path.casefold().endswith(DOCX_FILE_EXTENSION.value.casefold()):
+            return FileExtensions.__handle_docx_file__(file_path)
 
         return []
 
@@ -25,3 +30,9 @@ class FileExtensions:
         reader = pypdf.PdfReader(file_path)
 
         return [page.extract_text() for page in reader.pages]
+
+    @staticmethod
+    def __handle_docx_file__(file_path: str) -> list[str]:
+        document = Document(file_path)
+
+        return [paragraph.text for paragraph in document.paragraphs]

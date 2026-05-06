@@ -6,3 +6,4 @@ class FileExtension:
 
 TEXT = FileExtension(".TXT")
 PORTABLE_DOCUMENT_FORMAT = FileExtension(".PDF")
+DOCX = FileExtension(".DOCX")
