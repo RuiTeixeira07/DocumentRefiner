@@ -15,6 +15,13 @@ blank_lines = f"[{whitespace_character}]+({carriage_return}|{line_feed}|{end_of_
 class StringExtensions:
     @staticmethod
     def clean_text(text: str) -> str:
+        """
+        Clean text.
+        Order of operations is deliberate.
+
+        :param str text: The text to be cleaned.
+        :return: Cleaned text.
+        """
         text = StringExtensions.remove_consecutive_whitespace_characters(text)
         text = StringExtensions.remove_blank_lines(text)
         text = StringExtensions.remove_consecutive_paragraphs(text)
