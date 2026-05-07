@@ -1,4 +1,5 @@
 from DocumentRefiner.file.file import File
+from DocumentRefiner.refiner.refiner import Refiner
 from DocumentRefiner.resources.format.format import Format
 from DocumentRefiner.file.model.extension import TEXT as TEXT_FILE_EXTENSION
 from DocumentRefiner.file.model.extension import PORTABLE_DOCUMENT_FORMAT as PORTABLE_DOCUMENT_FORMAT_FILE_EXTENSION
@@ -20,6 +21,9 @@ class Main:
                 recommended_document_data_path)).read_file()
 
         print(document_data)
+        refined_document_data = Refiner.refine(document_data)
+
+        print(refined_document_data)
 
 if __name__ == '__main__':
     main = Main()
