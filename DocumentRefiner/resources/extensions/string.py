@@ -26,6 +26,17 @@ class StringExtensions:
         text = StringExtensions.remove_blank_lines(text)
         text = StringExtensions.remove_consecutive_paragraphs(text)
 
+        text = StringExtensions.remove_leading_artifacts(text)
+
+        return text
+
+    @staticmethod
+    def remove_leading_artifacts(text: str) -> str:
+        text = StringExtensions.__remove_leading_elements__(text, carriage_return)
+        text = StringExtensions.__remove_leading_elements__(text, line_feed)
+        text = StringExtensions.__remove_leading_elements__(text, end_of_line)
+        text = StringExtensions.__remove_leading_elements__(text, whitespace_character)
+
         return text
 
     @staticmethod
@@ -39,3 +50,7 @@ class StringExtensions:
     @staticmethod
     def remove_consecutive_whitespace_characters(text: str) -> str:
         return re.sub(two_consecutive_whitespace_characters, whitespace_character, text)
+
+    @staticmethod
+    def __remove_leading_elements__(text: str, element: str) -> str:
+        return text[len(element):] if text[:2] == element else text
