@@ -1,6 +1,11 @@
 import os
+from DocumentRefiner.resources.extensions.string import StringExtensions
 
 class Format:
+    @staticmethod
+    def clean_text(text: str) -> str:
+        return StringExtensions.clean_text(text)
+
     @staticmethod
     def request_file_path(file_name: str, file_extensions: list[str], recommended_file_path: str, must_exist: bool = True) -> str:
         normalized_file_extensions = tuple([file_extension.casefold() for file_extension in file_extensions])
