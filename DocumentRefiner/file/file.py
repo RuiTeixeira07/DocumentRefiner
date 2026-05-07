@@ -8,7 +8,7 @@ class File:
     def __init__(self: File, file_path: str) -> None:
         self.file_path = file_path
 
-    def read_file(self: File) -> list[str]:
+    def read_file(self: File) -> str:
         normalized_file_path = self.file_path.casefold()
 
         if not normalized_file_path.endswith((

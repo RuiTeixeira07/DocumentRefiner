@@ -19,8 +19,7 @@ class Main:
                 ],
                 recommended_document_data_path)).read_file()
 
-        for line in document_data:
-            print(line)
+        print(document_data)
 
 if __name__ == '__main__':
     main = Main()
