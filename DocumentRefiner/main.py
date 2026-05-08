@@ -20,6 +20,8 @@ class Main:
                 ],
                 recommended_document_data_path)).read_file()
 
+        print(document_data)
+
         refined_document_data = Refiner.refine(document_data)
 
         print(refined_document_data)
