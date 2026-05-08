@@ -8,9 +8,9 @@ two_consecutive_paragraphs = f"({carriage_return}|{line_feed}|{end_of_line}){{2,
 empty_line= 2 * line_feed
 
 whitespace_character = " "
-two_consecutive_whitespace_characters = f"[{whitespace_character}]{{2,}}"
+two_consecutive_whitespace_characters = f"({whitespace_character}){{2,}}"
 
-blank_lines = f"[{whitespace_character}]+({carriage_return}|{line_feed}|{end_of_line})"
+blank_lines = f"({whitespace_character})+({carriage_return}|{line_feed}|{end_of_line})"
 
 class StringExtensions:
     @staticmethod
@@ -63,7 +63,7 @@ class StringExtensions:
 
     @staticmethod
     def __remove_leading_elements__(text: str, element: str) -> str:
-        return text[len(element):] if text[:2] == element else text
+        return text[len(element):] if text[:len(element)] == element else text
 
     @staticmethod
     def __remove_trailing_elements__(text: str, element: str) -> str:
