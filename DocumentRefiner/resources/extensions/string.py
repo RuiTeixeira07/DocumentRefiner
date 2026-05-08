@@ -1,16 +1,14 @@
 import re
+from DocumentRefiner.resources.model.line_ending import CARRIAGE_RETURN, LINE_FEED, END_OF_LINE
 
-carriage_return = "\r"
-line_feed = "\n"
-end_of_line = carriage_return + line_feed
-two_consecutive_paragraphs = f"({carriage_return}|{line_feed}|{end_of_line}){{2,}}"
+two_consecutive_paragraphs = f"({CARRIAGE_RETURN.value}|{LINE_FEED.value}|{END_OF_LINE.value}){{2,}}"
 
-empty_line= 2 * line_feed
+empty_line= 2 * LINE_FEED.value
 
 whitespace_character = " "
 two_consecutive_whitespace_characters = f"({whitespace_character}){{2,}}"
 
-blank_lines = f"({whitespace_character})+({carriage_return}|{line_feed}|{end_of_line})"
+blank_lines = f"({whitespace_character})+({CARRIAGE_RETURN.value}|{LINE_FEED.value}|{END_OF_LINE.value})"
 
 class StringExtensions:
     @staticmethod
@@ -33,18 +31,18 @@ class StringExtensions:
 
     @staticmethod
     def remove_leading_artifacts(text: str) -> str:
-        text = StringExtensions.__remove_leading_elements__(text, carriage_return)
-        text = StringExtensions.__remove_leading_elements__(text, line_feed)
-        text = StringExtensions.__remove_leading_elements__(text, end_of_line)
+        text = StringExtensions.__remove_leading_elements__(text, CARRIAGE_RETURN.value)
+        text = StringExtensions.__remove_leading_elements__(text, LINE_FEED.value)
+        text = StringExtensions.__remove_leading_elements__(text, END_OF_LINE.value)
         text = StringExtensions.__remove_leading_elements__(text, whitespace_character)
 
         return text
 
     @staticmethod
     def remove_trailing_artifacts(text: str) -> str:
-        text = StringExtensions.__remove_trailing_elements__(text, carriage_return)
-        text = StringExtensions.__remove_trailing_elements__(text, line_feed)
-        text = StringExtensions.__remove_trailing_elements__(text, end_of_line)
+        text = StringExtensions.__remove_trailing_elements__(text, CARRIAGE_RETURN.value)
+        text = StringExtensions.__remove_trailing_elements__(text, LINE_FEED.value)
+        text = StringExtensions.__remove_trailing_elements__(text, END_OF_LINE.value)
         text = StringExtensions.__remove_trailing_elements__(text, whitespace_character)
 
         return text
@@ -55,7 +53,7 @@ class StringExtensions:
 
     @staticmethod
     def remove_blank_lines(text: str) -> str:
-        return re.sub(blank_lines, line_feed, text)
+        return re.sub(blank_lines, LINE_FEED.value, text)
 
     @staticmethod
     def remove_consecutive_whitespace_characters(text: str) -> str:
