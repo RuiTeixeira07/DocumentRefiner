@@ -10,7 +10,7 @@ recommended_document_data_path = f"../assets/DocumentData{TEXT_FILE_EXTENSION.va
 class Main:
     @staticmethod
     def run() -> None:
-        document_data = File(
+        document = File(
             Format.request_file_path(
                 "Document Data",
                 [
@@ -20,9 +20,9 @@ class Main:
                 ],
                 recommended_document_data_path)).read_file()
 
-        print(document_data)
+        print(document.data)
 
-        refined_document_data = Refiner.refine(document_data)
+        refined_document_data = Refiner.refine(document.data)
 
         print(refined_document_data)
 

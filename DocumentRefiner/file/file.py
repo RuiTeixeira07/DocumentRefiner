@@ -3,12 +3,13 @@ from DocumentRefiner.file.extensions.file import FileExtensions
 from DocumentRefiner.file.model.extension import TEXT as TEXT_FILE_EXTENSION
 from DocumentRefiner.file.model.extension import PORTABLE_DOCUMENT_FORMAT as PORTABLE_DOCUMENT_FORMAT_FILE_EXTENSION
 from DocumentRefiner.file.model.extension import DOCX as DOCX_FILE_EXTENSION
+from DocumentRefiner.model.document import Document
 
 class File:
     def __init__(self: File, file_path: str) -> None:
         self.file_path = file_path
 
-    def read_file(self: File) -> str:
+    def read_file(self: File) -> Document:
         normalized_file_path = self.file_path.casefold()
 
         if not normalized_file_path.endswith((
