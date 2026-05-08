@@ -1,5 +1,5 @@
 import os
-from DocumentRefiner.file.extensions.extensions import FileExtensions
+from DocumentRefiner.file.extensions.file import FileExtensions
 from DocumentRefiner.file.model.extension import TEXT as TEXT_FILE_EXTENSION
 from DocumentRefiner.file.model.extension import PORTABLE_DOCUMENT_FORMAT as PORTABLE_DOCUMENT_FORMAT_FILE_EXTENSION
 from DocumentRefiner.file.model.extension import DOCX as DOCX_FILE_EXTENSION
