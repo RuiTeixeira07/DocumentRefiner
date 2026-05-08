@@ -22,9 +22,9 @@ class Main:
 
         print(document.data)
 
-        refined_document_data = Refiner.refine(document.data)
+        refined_document = Refiner.refine(document)
 
-        print(refined_document_data)
+        print(refined_document.refined_data)
 
 if __name__ == '__main__':
     main = Main()

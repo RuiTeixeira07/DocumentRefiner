@@ -1,22 +1,26 @@
+from DocumentRefiner.model.document import Document
+from DocumentRefiner.model.refined_document import RefinedDocument
 from DocumentRefiner.resources.extensions.string import StringExtensions
 from DocumentRefiner.resources.format.format import Format
 
 class Refiner:
     @staticmethod
     def refine(
-        data: str,
+        document: Document,
         remove_consecutive_whitespace_characters: bool = True,
         remove_blank_lines: bool = True,
         remove_consecutive_paragraphs: bool = True,
         remove_leading_artifacts: bool = True,
-        remove_trailing_artifacts: bool = True) -> str:
+        remove_trailing_artifacts: bool = True) -> RefinedDocument:
 
         if (remove_consecutive_whitespace_characters
             and remove_blank_lines
             and remove_consecutive_paragraphs
             and remove_leading_artifacts
             and remove_trailing_artifacts):
-            return Format.clean_text(data)
+            return RefinedDocument(document, Format.clean_text(document.data))
+
+        data = document.data
 
         if remove_consecutive_whitespace_characters:
             data = StringExtensions.remove_consecutive_whitespace_characters(data)
@@ -33,4 +37,4 @@ class Refiner:
         if remove_trailing_artifacts:
             data = StringExtensions.remove_trailing_artifacts(data)
 
-        return data
+        return RefinedDocument(document, data)
